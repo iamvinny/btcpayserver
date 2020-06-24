@@ -211,6 +211,9 @@ namespace BTCPayServer.Migrations
                     b.Property<string>("OrderId")
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("PullPaymentDataId")
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("Status")
                         .HasColumnType("TEXT");
 
@@ -218,6 +221,8 @@ namespace BTCPayServer.Migrations
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("PullPaymentDataId");
 
                     b.HasIndex("StoreDataId");
 
@@ -850,6 +855,10 @@ namespace BTCPayServer.Migrations
 
             modelBuilder.Entity("BTCPayServer.Data.InvoiceData", b =>
                 {
+                    b.HasOne("BTCPayServer.Data.PullPaymentData", "PullPaymentData")
+                        .WithMany()
+                        .HasForeignKey("PullPaymentDataId");
+
                     b.HasOne("BTCPayServer.Data.StoreData", "StoreData")
                         .WithMany("Invoices")
                         .HasForeignKey("StoreDataId")

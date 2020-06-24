@@ -79,7 +79,8 @@ namespace BTCPayServer.Data
         {
             get; set;
         }
-
+        public string PullPaymentDataId { get; set; }
+        public PullPaymentData PullPaymentData { get; set; }
         public bool Archived { get; set; }
         public List<PendingInvoiceData> PendingInvoices { get; set; }
     }
